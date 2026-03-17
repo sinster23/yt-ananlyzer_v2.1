@@ -3,7 +3,7 @@
 // Injects sentiment badges + tracks emotions, toxicity, timeline
 // ============================================================
 
-const API_URL        = `${CONFIG.API_BASE}/predict`;
+const API_URL = 'https://sinster23-yt-analyzer-v2-1.hf.space/predict';
 const BATCH_SIZE     = 10;
 const PROCESSED_ATTR = 'data-sentiyt-done';
 
