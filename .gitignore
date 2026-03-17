@@ -1,0 +1,43 @@
+# ── Python cache ──────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── Model files (use HuggingFace instead) ─────
+server/sentiment_model_final/
+server/downloaded_model/
+server/upload_model.py
+*.bin
+*.pt
+*.safetensors
+*.ckpt
+
+# ── Environment / secrets ──────────────────────
+.env
+*.env
+.env.local
+.env.production
+
+# ── Extension secrets ──────────────────────────
+extension/config.js       
+
+# ── OS files ───────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Editor files ───────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Python virtual env ─────────────────────────
+venv/
+env/
+.venv/
+
+# ── Logs ───────────────────────────────────────
+*.log
+logs/

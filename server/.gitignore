@@ -1,0 +1,4 @@
+__pycache__/
+sentiment_model_final/
+downloaded_model/
+.env

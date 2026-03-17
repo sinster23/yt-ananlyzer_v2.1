@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "SentiYT",
+  "version": "2.0.0",
+  "description": "Real-time YouTube comment sentiment analysis with emotion detection and toxicity scoring.",
+  "permissions": ["storage", "activeTab", "tabs", "sidePanel"],
+  "host_permissions": ["https://www.youtube.com/*", "http://localhost:8000/*", "https://api.groq.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "side_panel": {
+    "default_path": "sidebar.html"
+  },
+  "action": {
+    "default_title": "Open SentiYT",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
