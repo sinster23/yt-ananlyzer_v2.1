@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "SentiYT",
+  "name": "Vibecheck AI",
   "version": "2.0.0",
   "description": "Real-time YouTube comment sentiment analysis with emotion detection and toxicity scoring.",
   "permissions": ["storage", "activeTab", "tabs", "sidePanel"],
@@ -19,7 +19,7 @@
     "default_path": "sidebar.html"
   },
   "action": {
-    "default_title": "Open SentiYT",
+    "default_title": "Open Vibecheck AI",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",

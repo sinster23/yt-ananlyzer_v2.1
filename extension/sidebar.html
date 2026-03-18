@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SentiYT</title>
+  <title>Vibecheck AI</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,120 +30,55 @@
     }
 
     html, body {
-      width: 100%;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-ui);
-      font-size: 14px;
-      overflow-x: hidden;
+      width: 100%; min-height: 100vh;
+      background: var(--bg); color: var(--text);
+      font-family: var(--font-ui); font-size: 14px; overflow-x: hidden;
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--red-dim); border-radius: 4px; }
 
-    /* ══════════════════════ HEADER ══════════════════════ */
     .header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 16px 12px;
-      position: sticky; top: 0; z-index: 100;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 14px 16px 12px; position: sticky; top: 0; z-index: 100;
     }
-    .header-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .logo { display: flex; align-items: center; gap: 10px; }
     .logo-mark {
-      width: 32px; height: 32px;
-      background: var(--red);
+      width: 32px; height: 32px; background: var(--red);
       clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
-      box-shadow: 0 0 20px var(--red-glow);
-      flex-shrink: 0;
+      font-size: 14px; box-shadow: 0 0 20px var(--red-glow); flex-shrink: 0;
     }
     .logo-text {
-      font-family: var(--font-display);
-      font-size: 26px;
-      letter-spacing: 2px;
+      font-family: var(--font-display); font-size: 26px; letter-spacing: 2px;
       background: linear-gradient(135deg, #fff 0%, var(--red) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1;
     }
-    .logo-sub {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+    .logo-sub { font-family: var(--font-mono); font-size: 9px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
 
-    /* Toggle */
-    .toggle-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .toggle-lbl {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 1px;
-    }
-    .switch {
-      position: relative;
-      width: 44px; height: 24px;
-      cursor: pointer;
-    }
+    .toggle-group { display: flex; align-items: center; gap: 8px; }
+    .toggle-lbl { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+    .switch { position: relative; width: 44px; height: 24px; cursor: pointer; }
     .switch input { opacity: 0; width: 0; height: 0; }
     .track {
-      position: absolute; inset: 0;
-      background: var(--border);
-      border-radius: 24px;
-      border: 1px solid var(--border2);
-      transition: all 0.3s;
+      position: absolute; inset: 0; background: var(--border);
+      border-radius: 24px; border: 1px solid var(--border2); transition: all 0.3s;
     }
     .track::before {
-      content: '';
-      position: absolute;
-      width: 18px; height: 18px;
-      left: 2px; top: 2px;
-      background: var(--muted);
-      border-radius: 50%;
-      transition: all 0.3s;
+      content: ''; position: absolute; width: 18px; height: 18px;
+      left: 2px; top: 2px; background: var(--muted); border-radius: 50%; transition: all 0.3s;
     }
     input:checked + .track { background: var(--red-dim); border-color: var(--red); box-shadow: 0 0 10px var(--red-glow); }
     input:checked + .track::before { transform: translateX(20px); background: var(--red); }
 
-    /* API Status bar */
     .api-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 6px 10px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px;
     }
-    .api-left {
-      display: flex; align-items: center; gap: 8px;
-    }
-    .pip {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--muted2);
-      flex-shrink: 0;
-    }
+    .api-left { display: flex; align-items: center; gap: 8px; }
+    .pip { width: 7px; height: 7px; border-radius: 50%; background: var(--muted2); flex-shrink: 0; }
     .pip.online  { background: var(--green); box-shadow: 0 0 8px var(--green); animation: blink 2s infinite; }
     .pip.offline { background: var(--red); }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
@@ -151,494 +86,215 @@
     .api-status-lbl { font-size: 12px; font-weight: 600; color: var(--text); }
     .api-url { font-family: var(--font-mono); font-size: 9px; color: var(--muted); }
     .btn-check {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      padding: 4px 8px;
-      border-radius: 4px;
-      border: 1px solid var(--border2);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: all 0.2s;
+      font-family: var(--font-mono); font-size: 9px; padding: 4px 8px;
+      border-radius: 4px; border: 1px solid var(--border2); background: transparent;
+      color: var(--muted); cursor: pointer; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s;
     }
     .btn-check:hover { border-color: var(--red); color: var(--red); }
 
-    /* ══════════════════════ TABS ══════════════════════ */
     .tabs {
-      display: flex;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      padding: 0 16px;
-      gap: 2px;
+      display: flex; border-bottom: 1px solid var(--border);
+      background: var(--surface); padding: 0 16px; gap: 2px;
     }
     .tab {
-      font-family: var(--font-ui);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 10px 12px 9px;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      position: relative;
-      transition: color 0.2s;
-      white-space: nowrap;
+      font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase; padding: 10px 12px 9px;
+      border: none; background: transparent; color: var(--muted); cursor: pointer;
+      position: relative; transition: color 0.2s; white-space: nowrap;
     }
     .tab::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--red);
-      transform: scaleX(0);
-      transition: transform 0.2s;
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--red); transform: scaleX(0); transition: transform 0.2s;
     }
     .tab.active { color: var(--red); }
     .tab.active::after { transform: scaleX(1); }
     .tab:hover { color: var(--text); }
 
-    /* ══════════════════════ PANELS ══════════════════════ */
     .panel { display: none; padding: 16px; }
     .panel.active { display: block; }
 
-    /* Section label */
     .sec-label {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
+      font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
       display: flex; align-items: center; gap: 8px;
     }
-    .sec-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+    .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-    /* ══════════════════════ OVERVIEW PANEL ══════════════════════ */
-    /* Big score */
     .audience-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px;
-      margin-bottom: 12px;
-      position: relative;
-      overflow: hidden;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px; margin-bottom: 12px;
+      position: relative; overflow: hidden;
     }
     .audience-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--red), transparent);
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; background: linear-gradient(90deg, var(--red), transparent);
     }
-    .audience-headline {
-      font-family: var(--font-display);
-      font-size: 13px;
-      letter-spacing: 3px;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-    .audience-verdict {
-      font-family: var(--font-display);
-      font-size: 32px;
-      letter-spacing: 2px;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
+    .audience-headline { font-family: var(--font-display); font-size: 13px; letter-spacing: 3px; color: var(--muted); margin-bottom: 6px; }
+    .audience-verdict { font-family: var(--font-display); font-size: 32px; letter-spacing: 2px; line-height: 1; margin-bottom: 4px; }
     .audience-verdict.positive { color: var(--green); text-shadow: 0 0 20px rgba(45,198,83,0.4); }
     .audience-verdict.negative { color: var(--red);   text-shadow: 0 0 20px var(--red-glow); }
     .audience-verdict.neutral  { color: var(--gold);  text-shadow: 0 0 20px rgba(244,162,97,0.4); }
-    .audience-verdict.mixed    { color: var(--blue);  }
-    .audience-sub {
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 500;
-    }
-    .audience-total {
-      position: absolute;
-      right: 14px; top: 50%;
-      transform: translateY(-50%);
-      text-align: right;
-    }
-    .audience-total-num {
-      font-family: var(--font-display);
-      font-size: 40px;
-      color: var(--border2);
-      line-height: 1;
-    }
+    .audience-verdict.mixed    { color: var(--blue); }
+    .audience-sub { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .audience-total { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); text-align: right; }
+    .audience-total-num { font-family: var(--font-display); font-size: 40px; color: var(--border2); line-height: 1; }
     .audience-total-lbl { font-size: 9px; color: var(--muted2); letter-spacing: 2px; }
 
-    /* Stat grid */
-    .stat-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 12px;
-    }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
     .stat-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 8px;
-      text-align: center;
-      transition: border-color 0.2s, transform 0.2s;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 8px; text-align: center; transition: border-color 0.2s, transform 0.2s;
     }
     .stat-box:hover { transform: translateY(-2px); }
     .stat-box.pos { border-color: rgba(45,198,83,0.25); }
     .stat-box.neg { border-color: rgba(230,57,70,0.25); }
     .stat-box.neu { border-color: rgba(244,162,97,0.25); }
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 28px;
-      line-height: 1;
-      margin-bottom: 3px;
-    }
+    .stat-num { font-family: var(--font-display); font-size: 28px; line-height: 1; margin-bottom: 3px; }
     .stat-box.pos .stat-num { color: var(--green); }
     .stat-box.neg .stat-num { color: var(--red); }
     .stat-box.neu .stat-num { color: var(--gold); }
     .stat-icon { font-size: 14px; }
     .stat-lbl { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
 
-    /* Bars */
     .bar-list { margin-bottom: 14px; }
-    .bar-row {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 8px;
-    }
+    .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
     .bar-key { width: 58px; text-align: right; font-size: 11px; font-weight: 600; color: var(--muted); }
-    .bar-track {
-      flex: 1; height: 8px;
-      background: var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .bar-fill {
-      height: 100%; border-radius: 4px;
-      transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
-      width: 0%;
-    }
+    .bar-track { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s cubic-bezier(0.4,0,0.2,1); width: 0%; }
     .bar-fill.pos { background: linear-gradient(90deg, #1a7a32, var(--green)); }
     .bar-fill.neg { background: linear-gradient(90deg, var(--red-dim), var(--red)); }
     .bar-fill.neu { background: linear-gradient(90deg, #9a6022, var(--gold)); }
     .bar-pct { width: 30px; font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
 
-    /* Actions */
-    .action-row { display: flex; gap: 8px; }
+    .action-row { display: flex; gap: 8px; margin-bottom: 16px; }
     .btn {
-      flex: 1; padding: 10px;
-      border-radius: 6px; border: none;
-      font-family: var(--font-ui);
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex; align-items: center; justify-content: center; gap: 6px;
+      flex: 1; padding: 10px; border-radius: 6px; border: none;
+      font-family: var(--font-ui); font-size: 12px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+      transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
     }
-    .btn-red {
-      background: var(--red);
-      color: white;
-      box-shadow: 0 4px 16px var(--red-glow);
-    }
+    .btn-red { background: var(--red); color: white; box-shadow: 0 4px 16px var(--red-glow); }
     .btn-red:hover { background: #ff4757; box-shadow: 0 6px 20px rgba(230,57,70,0.5); transform: translateY(-1px); }
-    .btn-ghost {
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--border2);
-    }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border2); }
     .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
 
-    /* ══════════════════════ TIMELINE PANEL ══════════════════════ */
-    .timeline-desc {
-      font-size: 12px; color: var(--muted);
-      margin-bottom: 14px; line-height: 1.6;
+    /* ── Top Comments ── */
+    .top-comment {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 8px 10px; margin-bottom: 6px;
+      font-size: 12px; line-height: 1.5; color: var(--text);
     }
-    .timeline-wrap {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 14px;
-    }
-    #timelineCanvas {
-      width: 100%; height: 120px;
-      display: block;
-    }
-    .timeline-legend {
-      display: flex; gap: 14px; margin-top: 10px;
-    }
+    .top-comment.pos { border-left: 3px solid var(--green); }
+    .top-comment.neg { border-left: 3px solid var(--red); }
+    .top-comment-score { font-family: var(--font-mono); font-size: 9px; margin-top: 4px; }
+    .top-comment.pos .top-comment-score { color: var(--green); }
+    .top-comment.neg .top-comment-score { color: var(--red); }
+    .top-comment-empty { font-size: 11px; color: var(--muted2); text-align: center; padding: 8px; }
+
+    /* ── Timeline ── */
+    .timeline-desc { font-size: 12px; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
+    .timeline-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 14px; }
+    #timelineCanvas { width: 100%; height: 120px; display: block; }
+    .timeline-legend { display: flex; gap: 14px; margin-top: 10px; }
     .tl-legend-item { display: flex; align-items: center; gap: 5px; }
     .tl-dot { width: 8px; height: 8px; border-radius: 50%; }
     .tl-dot.pos { background: var(--green); }
     .tl-dot.neg { background: var(--red); }
     .tl-dot.neu { background: var(--gold); }
     .tl-lbl { font-size: 10px; color: var(--muted); }
-
-    /* Comment scroll timeline */
-    .scroll-label {
-      font-size: 11px; color: var(--muted);
-      text-align: center; margin-bottom: 8px;
-    }
-    .timeline-track {
-      background: var(--border);
-      height: 20px;
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      margin-bottom: 6px;
-    }
-    .timeline-seg {
-      height: 100%;
-      transition: width 0.5s;
-    }
+    .scroll-label { font-size: 11px; color: var(--muted); text-align: center; margin-bottom: 8px; }
+    .timeline-track { background: var(--border); height: 20px; border-radius: 10px; overflow: hidden; display: flex; margin-bottom: 6px; }
+    .timeline-seg { height: 100%; transition: width 0.5s; }
     .timeline-seg.pos { background: var(--green); }
     .timeline-seg.neg { background: var(--red); }
     .timeline-seg.neu { background: var(--gold); }
 
-    /* ══════════════════════ TOXICITY PANEL ══════════════════════ */
-    .tox-gauge-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 14px;
-    }
-    .tox-gauge {
-      position: relative;
-      width: 130px; height: 70px;
-    }
-    .tox-arc-bg, .tox-arc-fill {
-      fill: none;
-      stroke-width: 14;
-      stroke-linecap: round;
-    }
+    /* ── Toxicity ── */
+    .tox-gauge-wrap { display: flex; justify-content: center; margin-bottom: 14px; }
+    .tox-gauge { position: relative; width: 130px; height: 70px; }
+    .tox-arc-bg, .tox-arc-fill { fill: none; stroke-width: 14; stroke-linecap: round; }
     .tox-arc-bg { stroke: var(--border); }
-    .tox-arc-fill {
-      stroke: var(--red);
-      stroke-dasharray: 200;
-      stroke-dashoffset: 200;
-      transition: stroke-dashoffset 1s ease, stroke 0.5s;
-    }
-    .tox-score-display {
-      position: absolute;
-      bottom: 2px; left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-    }
-    .tox-score-num {
-      font-family: var(--font-display);
-      font-size: 26px;
-      line-height: 1;
-    }
+    .tox-arc-fill { stroke: var(--red); stroke-dasharray: 200; stroke-dashoffset: 200; transition: stroke-dashoffset 1s ease, stroke 0.5s; }
+    .tox-score-display { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); text-align: center; }
+    .tox-score-num { font-family: var(--font-display); font-size: 26px; line-height: 1; }
     .tox-score-lbl { font-size: 9px; color: var(--muted); letter-spacing: 1px; }
-
-    /* Toxicity breakdown */
-    .tox-item {
-      display: flex; align-items: center;
-      gap: 10px; margin-bottom: 8px;
-    }
+    .tox-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
     .tox-icon { font-size: 14px; width: 20px; text-align: center; }
     .tox-name { font-size: 12px; font-weight: 600; width: 90px; }
-    .tox-bar-track {
-      flex: 1; height: 6px;
-      background: var(--border); border-radius: 3px; overflow: hidden;
-    }
-    .tox-bar-fill {
-      height: 100%; border-radius: 3px;
-      background: var(--red);
-      width: 0%; transition: width 0.8s;
-    }
-    .tox-val {
-      font-family: var(--font-mono);
-      font-size: 10px; color: var(--muted); width: 28px; text-align: right;
-    }
-
-    /* Top toxic comments */
+    .tox-bar-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .tox-bar-fill { height: 100%; border-radius: 3px; background: var(--red); width: 0%; transition: width 0.8s; }
+    .tox-val { font-family: var(--font-mono); font-size: 10px; color: var(--muted); width: 28px; text-align: right; }
     .flagged-item {
-      background: var(--surface2);
-      border: 1px solid rgba(230,57,70,0.2);
-      border-left: 3px solid var(--red);
-      border-radius: 6px;
-      padding: 8px 10px;
-      margin-bottom: 8px;
-      font-size: 12px;
-      line-height: 1.5;
-      color: var(--text);
+      background: var(--surface2); border: 1px solid rgba(230,57,70,0.2);
+      border-left: 3px solid var(--red); border-radius: 6px;
+      padding: 8px 10px; margin-bottom: 8px; font-size: 12px; line-height: 1.5; color: var(--text);
     }
-    .flagged-meta {
-      display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap;
-    }
+    .flagged-meta { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
     .tox-tag {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      padding: 2px 6px;
-      border-radius: 3px;
-      background: rgba(230,57,70,0.12);
-      color: var(--red);
-      border: 1px solid rgba(230,57,70,0.25);
+      font-family: var(--font-mono); font-size: 9px; padding: 2px 6px; border-radius: 3px;
+      background: rgba(230,57,70,0.12); color: var(--red); border: 1px solid rgba(230,57,70,0.25);
     }
-    .no-flagged {
-      text-align: center;
-      padding: 20px;
-      color: var(--muted);
-      font-size: 12px;
-    }
+    .no-flagged { text-align: center; padding: 20px; color: var(--muted); font-size: 12px; }
     .no-flagged .icon { font-size: 24px; margin-bottom: 6px; }
 
-    /* ══════════════════════ EMOTION PANEL ══════════════════════ */
-    .emotion-radar {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      margin-bottom: 14px;
-    }
+    /* ── Emotions ── */
+    .emotion-radar { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 14px; }
     .emotion-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px;
-      display: flex; align-items: center; gap: 10px;
-      transition: border-color 0.2s;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 10px; display: flex; align-items: center; gap: 10px; transition: border-color 0.2s;
     }
     .emotion-card:hover { border-color: var(--border2); }
     .emotion-emoji { font-size: 22px; }
     .emotion-info { flex: 1; }
     .emotion-name { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-    .emotion-bar-track {
-      height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 2px;
-    }
+    .emotion-bar-track { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 2px; }
     .emotion-bar-fill { height: 100%; border-radius: 2px; width: 0%; transition: width 0.9s; }
     .emotion-pct { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
-
-    .dominant-emotion {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px;
-      text-align: center;
-      margin-bottom: 14px;
-    }
+    .dominant-emotion { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; margin-bottom: 14px; }
     .dominant-emoji { font-size: 36px; margin-bottom: 4px; }
-    .dominant-name {
-      font-family: var(--font-display);
-      font-size: 24px; letter-spacing: 2px;
-      margin-bottom: 2px;
-    }
+    .dominant-name { font-family: var(--font-display); font-size: 24px; letter-spacing: 2px; margin-bottom: 2px; }
     .dominant-sub { font-size: 11px; color: var(--muted); }
 
-    /* ══════════════════════ AI SUMMARY PANEL ══════════════════════ */
+    /* ── AI Summary ── */
     .summary-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 14px;
-      position: relative;
-      min-height: 100px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px; margin-bottom: 14px; position: relative; min-height: 100px;
     }
     .summary-box::before {
-      content: '"';
-      position: absolute;
-      top: 6px; left: 12px;
-      font-family: var(--font-display);
-      font-size: 48px;
-      color: var(--border2);
-      line-height: 1;
+      content: '"'; position: absolute; top: 6px; left: 12px;
+      font-family: var(--font-display); font-size: 48px; color: var(--border2); line-height: 1;
     }
-    .summary-text {
-      font-size: 13px;
-      line-height: 1.8;
-      color: var(--text);
-      padding-left: 6px;
-      font-style: italic;
-    }
+    .summary-text { font-size: 13px; line-height: 1.8; color: var(--text); padding-left: 6px; font-style: italic; }
     .summary-text.loading { color: var(--muted); animation: fadeInOut 1.5s infinite; }
     @keyframes fadeInOut { 0%,100%{opacity:0.4} 50%{opacity:1} }
-    .summary-meta {
-      margin-top: 10px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .summary-model {
-      font-family: var(--font-mono);
-      font-size: 9px; color: var(--muted);
-    }
     .btn-summarize {
-      width: 100%;
-      padding: 12px;
-      border-radius: 6px;
-      border: 1px solid var(--red-dim);
-      background: var(--red-subtle);
-      color: var(--red);
-      font-family: var(--font-ui);
-      font-size: 12px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-bottom: 8px;
+      width: 100%; padding: 12px; border-radius: 6px;
+      border: 1px solid var(--red-dim); background: var(--red-subtle); color: var(--red);
+      font-family: var(--font-ui); font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; margin-bottom: 8px;
     }
     .btn-summarize:hover { background: rgba(230,57,70,0.15); border-color: var(--red); box-shadow: 0 0 20px var(--red-glow); }
-
-    /* Key themes */
     .themes-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
     .theme-chip {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      padding: 4px 8px;
-      border-radius: 4px;
-      background: var(--surface2);
-      border: 1px solid var(--border2);
-      color: var(--muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      font-family: var(--font-mono); font-size: 9px; padding: 4px 8px; border-radius: 4px;
+      background: var(--surface2); border: 1px solid var(--border2); color: var(--muted);
+      letter-spacing: 1px; text-transform: uppercase;
     }
 
-    /* ══════════════════════ FOOTER ══════════════════════ */
+    /* ── Footer ── */
     .footer {
-      border-top: 1px solid var(--border);
-      padding: 8px 16px;
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--surface);
-    }
-    .footer-left {
-      display: flex; align-items: center; gap: 6px;
+      border-top: 1px solid var(--border); padding: 8px 16px;
+      display: flex; align-items: center; justify-content: space-between; background: var(--surface);
     }
     .footer-model { font-family: var(--font-mono); font-size: 9px; color: var(--muted2); letter-spacing: 1px; }
     .footer-ver   { font-family: var(--font-mono); font-size: 9px; color: var(--muted2); }
 
-    /* ══════════════════════ EMPTY STATE ══════════════════════ */
-    .empty-state {
-      text-align: center;
-      padding: 30px 16px;
-    }
-    .empty-icon { font-size: 32px; margin-bottom: 10px; opacity: 0.4; }
-    .empty-title {
-      font-family: var(--font-display);
-      font-size: 20px; letter-spacing: 2px;
-      color: var(--muted); margin-bottom: 6px;
-    }
-    .empty-sub { font-size: 12px; color: var(--muted2); line-height: 1.6; }
-
-    /* ══════════════════════ DISABLED ══════════════════════ */
     body.disabled .panel-content { opacity: 0.35; pointer-events: none; }
 
-    /* ══════════════════════ SCAN INDICATOR ══════════════════════ */
-    .scan-bar {
-      height: 2px;
-      background: var(--border);
-      overflow: hidden;
-    }
+    .scan-bar { height: 2px; background: var(--border); overflow: hidden; }
     .scan-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, transparent, var(--red), transparent);
-      width: 30%;
-      animation: scanMove 1.5s infinite linear;
-      display: none;
+      height: 100%; background: linear-gradient(90deg, transparent, var(--red), transparent);
+      width: 30%; animation: scanMove 1.5s infinite linear; display: none;
     }
     .scan-bar-fill.active { display: block; }
     @keyframes scanMove { from{transform:translateX(-100%)} to{transform:translateX(430%)} }
@@ -646,13 +302,12 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-top">
     <div class="logo">
-      <div class="logo-mark">⬡</div>
+        <img src="icons/icon48.png" alt="Vibecheck AI Logo">
       <div>
-        <div class="logo-text">SENTIYT</div>
+        <div class="logo-text">VIBECHECK AI</div>
         <div class="logo-sub">Comment Intelligence</div>
       </div>
     </div>
@@ -669,19 +324,15 @@
       <div class="pip" id="apiPip"></div>
       <div class="api-info">
         <div class="api-status-lbl" id="apiLbl">Connecting…</div>
-        <div class="api-url">localhost:8000 · distilbert-base-uncased</div>
+        <div class="api-url" id="apiUrlDisplay">connecting…</div>
       </div>
     </div>
     <button class="btn-check" id="checkBtn">Ping</button>
   </div>
 </div>
 
-<!-- SCAN BAR -->
-<div class="scan-bar">
-  <div class="scan-bar-fill" id="scanBar"></div>
-</div>
+<div class="scan-bar"><div class="scan-bar-fill" id="scanBar"></div></div>
 
-<!-- TABS -->
 <div class="tabs">
   <button class="tab active" data-tab="overview">Overview</button>
   <button class="tab" data-tab="timeline">Timeline</button>
@@ -690,71 +341,48 @@
   <button class="tab" data-tab="summary">AI Report</button>
 </div>
 
-<!-- ═══════════════ OVERVIEW PANEL ═══════════════ -->
+<!-- OVERVIEW -->
 <div class="panel active" id="tab-overview">
   <div class="panel-content">
-
-    <div class="audience-card" id="audienceCard">
+    <div class="audience-card">
       <div class="audience-headline">AUDIENCE REACTION</div>
-      <div class="audience-verdict neutral" id="audienceVerdict">NEUTRAL</div>
-      <div class="audience-sub" id="audienceSub">Analyzing comments…</div>
+      <div class="audience-verdict neutral" id="audienceVerdict">NO DATA</div>
+      <div class="audience-sub" id="audienceSub">Scroll to comments section to begin.</div>
       <div class="audience-total">
         <div class="audience-total-num" id="totalCount">0</div>
         <div class="audience-total-lbl">analyzed</div>
       </div>
     </div>
-
     <div class="sec-label">Breakdown</div>
     <div class="stat-row">
-      <div class="stat-box pos">
-        <div class="stat-num" id="posCount">0</div>
-        <div class="stat-icon">😊</div>
-        <div class="stat-lbl">Positive</div>
-      </div>
-      <div class="stat-box neg">
-        <div class="stat-num" id="negCount">0</div>
-        <div class="stat-icon">😠</div>
-        <div class="stat-lbl">Negative</div>
-      </div>
-      <div class="stat-box neu">
-        <div class="stat-num" id="neuCount">0</div>
-        <div class="stat-icon">😐</div>
-        <div class="stat-lbl">Neutral</div>
-      </div>
+      <div class="stat-box pos"><div class="stat-num" id="posCount">0</div><div class="stat-icon">😊</div><div class="stat-lbl">Positive</div></div>
+      <div class="stat-box neg"><div class="stat-num" id="negCount">0</div><div class="stat-icon">😠</div><div class="stat-lbl">Negative</div></div>
+      <div class="stat-box neu"><div class="stat-num" id="neuCount">0</div><div class="stat-icon">😐</div><div class="stat-lbl">Neutral</div></div>
     </div>
-
     <div class="bar-list">
-      <div class="bar-row">
-        <span class="bar-key">Positive</span>
-        <div class="bar-track"><div class="bar-fill pos" id="posBar"></div></div>
-        <span class="bar-pct" id="posPct">0%</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-key">Negative</span>
-        <div class="bar-track"><div class="bar-fill neg" id="negBar"></div></div>
-        <span class="bar-pct" id="negPct">0%</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-key">Neutral</span>
-        <div class="bar-track"><div class="bar-fill neu" id="neuBar"></div></div>
-        <span class="bar-pct" id="neuPct">0%</span>
-      </div>
+      <div class="bar-row"><span class="bar-key">Positive</span><div class="bar-track"><div class="bar-fill pos" id="posBar"></div></div><span class="bar-pct" id="posPct">0%</span></div>
+      <div class="bar-row"><span class="bar-key">Negative</span><div class="bar-track"><div class="bar-fill neg" id="negBar"></div></div><span class="bar-pct" id="negPct">0%</span></div>
+      <div class="bar-row"><span class="bar-key">Neutral</span><div class="bar-track"><div class="bar-fill neu" id="neuBar"></div></div><span class="bar-pct" id="neuPct">0%</span></div>
     </div>
-
     <div class="action-row">
       <button class="btn btn-red" id="rescanBtn">⟳ Rescan</button>
       <button class="btn btn-ghost" id="clearBtn">✕ Clear</button>
     </div>
 
+    <!-- TOP COMMENTS -->
+    <div class="sec-label">Top Positive</div>
+    <div id="topPositiveList"><div class="top-comment-empty">No positive comments yet</div></div>
+
+    <div class="sec-label" style="margin-top:12px">Top Negative</div>
+    <div id="topNegativeList"><div class="top-comment-empty">No negative comments yet</div></div>
   </div>
 </div>
 
-<!-- ═══════════════ TIMELINE PANEL ═══════════════ -->
+<!-- TIMELINE -->
 <div class="panel" id="tab-timeline">
   <div class="panel-content">
     <div class="sec-label">Sentiment Over Scroll</div>
     <p class="timeline-desc">Tracks how sentiment shifts as comments are loaded — showing whether early comments differ from later ones.</p>
-
     <div class="timeline-wrap">
       <canvas id="timelineCanvas" width="280" height="120"></canvas>
       <div class="timeline-legend">
@@ -763,10 +391,9 @@
         <div class="tl-legend-item"><div class="tl-dot neu"></div><span class="tl-lbl">Neutral</span></div>
       </div>
     </div>
-
     <div class="sec-label">Comment Distribution</div>
     <div class="scroll-label">Sentiment color-map across all analyzed comments</div>
-    <div class="timeline-track" id="timelineTrack">
+    <div class="timeline-track">
       <div class="timeline-seg pos" id="tlPos" style="width:33%"></div>
       <div class="timeline-seg neg" id="tlNeg" style="width:34%"></div>
       <div class="timeline-seg neu" id="tlNeu" style="width:33%"></div>
@@ -777,10 +404,9 @@
   </div>
 </div>
 
-<!-- ═══════════════ TOXICITY PANEL ═══════════════ -->
+<!-- TOXICITY -->
 <div class="panel" id="tab-toxicity">
   <div class="panel-content">
-
     <div class="sec-label">Overall Toxicity Score</div>
     <div class="tox-gauge-wrap">
       <div class="tox-gauge">
@@ -794,146 +420,60 @@
         </div>
       </div>
     </div>
-
     <div class="sec-label">Category Breakdown</div>
-    <div id="toxBreakdown">
-      <div class="tox-item">
-        <span class="tox-icon">☣️</span>
-        <span class="tox-name">Toxic</span>
-        <div class="tox-bar-track"><div class="tox-bar-fill" id="toxToxic"></div></div>
-        <span class="tox-val" id="toxToxicPct">0%</span>
-      </div>
-      <div class="tox-item">
-        <span class="tox-icon">🤬</span>
-        <span class="tox-name">Hate Speech</span>
-        <div class="tox-bar-track"><div class="tox-bar-fill" id="toxHate"></div></div>
-        <span class="tox-val" id="toxHatePct">0%</span>
-      </div>
-      <div class="tox-item">
-        <span class="tox-icon">⚔️</span>
-        <span class="tox-name">Insults</span>
-        <div class="tox-bar-track"><div class="tox-bar-fill" id="toxInsult"></div></div>
-        <span class="tox-val" id="toxInsultPct">0%</span>
-      </div>
-      <div class="tox-item">
-        <span class="tox-icon">💀</span>
-        <span class="tox-name">Threats</span>
-        <div class="tox-bar-track"><div class="tox-bar-fill" id="toxThreat"></div></div>
-        <span class="tox-val" id="toxThreatPct">0%</span>
-      </div>
-    </div>
-
+    <div class="tox-item"><span class="tox-icon">☣️</span><span class="tox-name">Toxic</span><div class="tox-bar-track"><div class="tox-bar-fill" id="toxToxic"></div></div><span class="tox-val" id="toxToxicPct">0%</span></div>
+    <div class="tox-item"><span class="tox-icon">🤬</span><span class="tox-name">Hate Speech</span><div class="tox-bar-track"><div class="tox-bar-fill" id="toxHate"></div></div><span class="tox-val" id="toxHatePct">0%</span></div>
+    <div class="tox-item"><span class="tox-icon">⚔️</span><span class="tox-name">Insults</span><div class="tox-bar-track"><div class="tox-bar-fill" id="toxInsult"></div></div><span class="tox-val" id="toxInsultPct">0%</span></div>
+    <div class="tox-item"><span class="tox-icon">💀</span><span class="tox-name">Threats</span><div class="tox-bar-track"><div class="tox-bar-fill" id="toxThreat"></div></div><span class="tox-val" id="toxThreatPct">0%</span></div>
     <div class="sec-label" style="margin-top:14px">Flagged Comments</div>
-    <div id="flaggedList">
-      <div class="no-flagged">
-        <div class="icon">🛡️</div>
-        <div>No flagged comments yet.<br/>Rescan to detect toxic content.</div>
-      </div>
-    </div>
-
+    <div id="flaggedList"><div class="no-flagged"><div class="icon">🛡️</div><div>No flagged comments yet.<br/>Rescan to detect toxic content.</div></div></div>
   </div>
 </div>
 
-<!-- ═══════════════ EMOTIONS PANEL ═══════════════ -->
+<!-- EMOTIONS -->
 <div class="panel" id="tab-emotions">
   <div class="panel-content">
-
     <div class="dominant-emotion">
       <div class="dominant-emoji" id="dominantEmoji">🤔</div>
       <div class="dominant-name" id="dominantName">ANALYZING</div>
       <div class="dominant-sub" id="dominantSub">Dominant emotion in comment section</div>
     </div>
-
     <div class="sec-label">Emotion Distribution</div>
-    <div class="emotion-radar" id="emotionGrid">
-      <div class="emotion-card">
-        <div class="emotion-emoji">😂</div>
-        <div class="emotion-info">
-          <div class="emotion-name" style="color:#f4a261">Joy</div>
-          <div class="emotion-bar-track"><div class="emotion-bar-fill" id="emJoy" style="background:#f4a261"></div></div>
-          <div class="emotion-pct" id="emJoyPct">0%</div>
-        </div>
-      </div>
-      <div class="emotion-card">
-        <div class="emotion-emoji">😤</div>
-        <div class="emotion-info">
-          <div class="emotion-name" style="color:#e63946">Anger</div>
-          <div class="emotion-bar-track"><div class="emotion-bar-fill" id="emAnger" style="background:#e63946"></div></div>
-          <div class="emotion-pct" id="emAngerPct">0%</div>
-        </div>
-      </div>
-      <div class="emotion-card">
-        <div class="emotion-emoji">😢</div>
-        <div class="emotion-info">
-          <div class="emotion-name" style="color:#4cc9f0">Sadness</div>
-          <div class="emotion-bar-track"><div class="emotion-bar-fill" id="emSad" style="background:#4cc9f0"></div></div>
-          <div class="emotion-pct" id="emSadPct">0%</div>
-        </div>
-      </div>
-      <div class="emotion-card">
-        <div class="emotion-emoji">😲</div>
-        <div class="emotion-info">
-          <div class="emotion-name" style="color:#a8dadc">Surprise</div>
-          <div class="emotion-bar-track"><div class="emotion-bar-fill" id="emSurprise" style="background:#a8dadc"></div></div>
-          <div class="emotion-pct" id="emSurprisePct">0%</div>
-        </div>
-      </div>
-      <div class="emotion-card">
-        <div class="emotion-emoji">😨</div>
-        <div class="emotion-info">
-          <div class="emotion-name" style="color:#9b5de5">Fear</div>
-          <div class="emotion-bar-track"><div class="emotion-bar-fill" id="emFear" style="background:#9b5de5"></div></div>
-          <div class="emotion-pct" id="emFearPct">0%</div>
-        </div>
-      </div>
-      <div class="emotion-card">
-        <div class="emotion-emoji">🤢</div>
-        <div class="emotion-info">
-          <div class="emotion-name" style="color:#2dc653">Disgust</div>
-          <div class="emotion-bar-track"><div class="emotion-bar-fill" id="emDisgust" style="background:#2dc653"></div></div>
-          <div class="emotion-pct" id="emDisgustPct">0%</div>
-        </div>
-      </div>
+    <div class="emotion-radar">
+      <div class="emotion-card"><div class="emotion-emoji">😂</div><div class="emotion-info"><div class="emotion-name" style="color:#f4a261">Joy</div><div class="emotion-bar-track"><div class="emotion-bar-fill" id="emJoy" style="background:#f4a261"></div></div><div class="emotion-pct" id="emJoyPct">0%</div></div></div>
+      <div class="emotion-card"><div class="emotion-emoji">😤</div><div class="emotion-info"><div class="emotion-name" style="color:#e63946">Anger</div><div class="emotion-bar-track"><div class="emotion-bar-fill" id="emAnger" style="background:#e63946"></div></div><div class="emotion-pct" id="emAngerPct">0%</div></div></div>
+      <div class="emotion-card"><div class="emotion-emoji">😢</div><div class="emotion-info"><div class="emotion-name" style="color:#4cc9f0">Sadness</div><div class="emotion-bar-track"><div class="emotion-bar-fill" id="emSad" style="background:#4cc9f0"></div></div><div class="emotion-pct" id="emSadPct">0%</div></div></div>
+      <div class="emotion-card"><div class="emotion-emoji">😲</div><div class="emotion-info"><div class="emotion-name" style="color:#a8dadc">Surprise</div><div class="emotion-bar-track"><div class="emotion-bar-fill" id="emSurprise" style="background:#a8dadc"></div></div><div class="emotion-pct" id="emSurprisePct">0%</div></div></div>
+      <div class="emotion-card"><div class="emotion-emoji">😨</div><div class="emotion-info"><div class="emotion-name" style="color:#9b5de5">Fear</div><div class="emotion-bar-track"><div class="emotion-bar-fill" id="emFear" style="background:#9b5de5"></div></div><div class="emotion-pct" id="emFearPct">0%</div></div></div>
+      <div class="emotion-card"><div class="emotion-emoji">🤢</div><div class="emotion-info"><div class="emotion-name" style="color:#2dc653">Disgust</div><div class="emotion-bar-track"><div class="emotion-bar-fill" id="emDisgust" style="background:#2dc653"></div></div><div class="emotion-pct" id="emDisgustPct">0%</div></div></div>
     </div>
-
   </div>
 </div>
 
-<!-- ═══════════════ AI SUMMARY PANEL ═══════════════ -->
+<!-- AI SUMMARY -->
 <div class="panel" id="tab-summary">
   <div class="panel-content">
-
     <div class="sec-label">AI-Generated Report</div>
     <div class="summary-box">
-      <div class="summary-text" id="summaryText">
-        Click "Generate Report" to get an AI analysis of the comment section's overall tone, themes, and notable patterns.
-      </div>
+      <div class="summary-text" id="summaryText">Click "Generate Report" to get an AI analysis of the comment section's overall tone, themes, and notable patterns.</div>
     </div>
-
-    <button class="btn-summarize" id="summarizeBtn">⚡ Generate Report</button>
-
+    <button class="btn-summarize" id="summarizeBtn">Generate Report</button>
     <div class="sec-label">Key Themes</div>
-    <div class="themes-wrap" id="themesWrap">
-      <div class="theme-chip">awaiting data</div>
-    </div>
-
+    <div class="themes-wrap" id="themesWrap"><div class="theme-chip">awaiting data</div></div>
     <div style="margin-top:14px" class="sec-label">Video Rating Prediction</div>
     <div class="audience-card" style="margin-bottom:0">
       <div class="audience-headline">PREDICTED RECEPTION</div>
       <div class="audience-verdict" id="ratingVerdict" style="font-size:22px;color:var(--muted)">—</div>
       <div class="audience-sub" id="ratingDesc">Generate report first</div>
     </div>
-
   </div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
-  <div class="footer-left">
-    <div class="footer-model">distilbert-base-uncased · 3-class</div>
-  </div>
-  <div class="footer-ver">v2.0.0</div>
+  <div class="footer-model">distilbert-base-uncased · 3-class</div>
+  <div class="footer-ver">v2.1.0</div>
 </div>
+
 <script src="config.js"></script>
 <script src="sidebar.js"></script>
 </body>
